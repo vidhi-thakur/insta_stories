@@ -1,3 +1,8 @@
+:root {
+  --spacing-default: 16px;
+  --spacing-small: 8px;
+}
+
 .App {
   text-align: center;
   background-color: whitesmoke;
@@ -6,7 +11,7 @@
 .App .mobile {
   width: 100%;
   max-width: 400px;
-  min-height: 100vh;
+  min-height: 95vh;
   margin: auto;
   background-color: white;
   border: 15px solid rgb(31, 30, 30);
@@ -18,24 +23,37 @@
 .App .mobile .stories {
   height: fit-content;
   border-radius: 10px;
-  padding: 16px 8px;
+  padding: var(--spacing-default) var(--spacing-small);
   overflow: hidden;
 }
 
-.App .mobile .stories > div {
+.App .mobile .stories>div {
   min-width: 100%;
   overflow-x: auto;
   white-space: nowrap;
   display: flex;
-  gap: 16px;
+  gap: var(--spacing-default);
 }
 
 /* Prevents the Story components from shrinking */
-.App .mobile .stories > div > * {
-  flex-shrink: 0; 
+.App .mobile .stories>div>* {
+  flex-shrink: 0;
 }
 
 .App .mobile .posts {
   flex: 1;
-  border-radius: 10px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  max-height: calc(100vh - 135px);
+  overflow-y: auto;
+}
+
+/* CSS to hide the scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

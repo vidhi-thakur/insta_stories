@@ -1,13 +1,13 @@
-import React from 'react';
 import './App.css';
 import Story from './ui/Story';
+import Post from './ui/Post';
 
 function App() {
   return (
     <div className="App">
       <div className='mobile'>
         <section className='stories'>
-          <div>
+          <div className='hide-scrollbar'>
             <Story />
             <Story />
             <Story />
@@ -17,7 +17,16 @@ function App() {
             <Story />
           </div>
         </section>
-        <section className='posts'></section>
+        <section className='posts hide-scrollbar'>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+        </section>
 
       </div>
     </div>

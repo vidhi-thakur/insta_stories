@@ -1,0 +1,37 @@
+.post {
+    margin: var(--spacing-default) 0px;
+}
+
+.post .header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-default);
+    padding: 0px var(--spacing-small);
+}
+
+.post .header .userImage {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+}
+
+.post .header .userImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.post .content {
+    height: 300px;
+    background-color: w;
+    display: grid;
+    place-items: center;
+    border-top: 1px solid rgb(204, 204, 204);
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.post .content img {
+    height: auto;
+    width: 100%;
+}
