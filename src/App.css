@@ -16,8 +16,23 @@
 }
 
 .App .mobile .stories {
-  height: 100px;
+  height: fit-content;
   border-radius: 10px;
+  padding: 16px 8px;
+  overflow: hidden;
+}
+
+.App .mobile .stories > div {
+  min-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+  gap: 16px;
+}
+
+/* Prevents the Story components from shrinking */
+.App .mobile .stories > div > * {
+  flex-shrink: 0; 
 }
 
 .App .mobile .posts {
