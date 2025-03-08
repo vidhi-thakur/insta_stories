@@ -1,10 +1,13 @@
-import React from 'react';
 import './Story.css';
 
-function Story() {
+interface StoryProps {
+  handleClick: () => void;
+}
+
+function Story({ handleClick }: StoryProps) {
   return (
-    <div className="story">
-      
+    <div onClick={handleClick} className="story">
+
     </div>
   );
 }

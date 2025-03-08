@@ -1,7 +1,13 @@
 import './StoryViewer.css'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
-export default function StoryViewer() {
+interface StoryViewerProps {
+    handleClose: () => void;
+}
+
+export default function StoryViewer({
+    handleClose
+}: StoryViewerProps) {
     return (
         <div className="storyViewer">
             <div>
@@ -13,7 +19,7 @@ export default function StoryViewer() {
                         <img src='/images/female-avatar.png' alt='user' />
                     </div>
                     <p>User Name</p>
-                    <CloseRoundedIcon className='closeIcon' />
+                    <CloseRoundedIcon onClick={handleClose} className='closeIcon' />
                 </section>
             </div>
             <section className='content'>
