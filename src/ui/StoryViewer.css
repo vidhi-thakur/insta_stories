@@ -1,0 +1,57 @@
+.storyViewer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.storyViewer>div {
+    padding: var(--spacing-small);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+}
+
+.storyViewer .progressbar {
+    display: block;
+    width: 100%;
+    background-color: brown;
+    height: 3px;
+    border-radius: 15px;
+}
+
+.storyViewer .header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-default);
+    position: relative;
+}
+
+.storyViewer .header .closeIcon {
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+}
+
+.storyViewer .header .userImage {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+}
+
+.storyViewer .header .userImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.storyViewer .content {
+    display: grid;
+    place-items: center;
+    flex: 1;
+}
+
+.storyViewer .content img {
+    height: auto;
+    width: 100%;
+}
