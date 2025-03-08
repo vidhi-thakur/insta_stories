@@ -1,0 +1,9 @@
+.postLoader {
+    margin: var(--spacing-default) 0px;
+}
+
+.postLoader .header {
+    display: flex;
+    gap: var(--spacing-default);
+    margin: 0px var(--spacing-small) var(--spacing-default);
+}
