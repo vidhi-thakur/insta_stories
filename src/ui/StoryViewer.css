@@ -2,6 +2,25 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
+}
+
+.storyViewer .icon {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    color: white;
+    background-color: gray;
+    padding: 4px;
+    border-radius: 50%;
+}
+
+.storyViewer .nextIcon {
+    right: var(--spacing-default);
+}
+
+.storyViewer .prevIcon {
+    left: var(--spacing-default);
 }
 
 .loading {

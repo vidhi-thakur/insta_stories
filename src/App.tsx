@@ -73,12 +73,19 @@ function App() {
     setCurrentStoryLoading(false);
   }
 
+  const handlePrevStory = async (id: number) => {
+    setCurrentStoryLoading(true);
+    const data = await getMockSingleStory({ api: "/data/stories.json", id: id - 1 });
+    setCurrentUserStory(data);
+    setCurrentStoryLoading(false);
+  }
+
   return (
     <div className="App">
       <div className='mobile'>
         {isStoryOpen ? <section className='storyViewer_outer'>
           <Suspense fallback={<CircularProgress sx={{ position: "absolute", top: "40%", left: "50%" }} color="inherit" />}>
-            {currentUserStory ? <StoryViewer handleNextStory={handleNextStory} loading={isCurrentStoryLoading} currentUserStory={currentUserStory} handleClose={() => setStoryOpen(false)} /> : null}
+            {currentUserStory ? <StoryViewer handlePrevStory={handlePrevStory} handleNextStory={handleNextStory} loading={isCurrentStoryLoading} currentUserStory={currentUserStory} handleClose={() => setStoryOpen(false)} /> : null}
           </Suspense>
         </section> : null}
         <section className='stories'>
