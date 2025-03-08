@@ -1,19 +1,32 @@
 
-interface Props {
+interface ThumbnailProps {
     api: string;
 }
 
-interface Story {
-    images: string[];
-    userName: string;
+interface SingleStoryProps {
+    api: string;
+    id: number;
 }
-export const getMockStoryThumbnailData = ({ api }: Props): Promise<string[]> => {
+
+interface Story {
+    userName: string,
+    images: string[],
+    id: number,
+    hasMore: boolean,
+    hasPrev: boolean,
+}
+interface StoryThumbnailProps {
+    image: string;
+    id: number;
+}
+
+export const getMockStoryThumbnailData = ({ api }: ThumbnailProps): Promise<StoryThumbnailProps[]> => {
     return new Promise((resolve, reject) => {
         setTimeout(async () => {
             try {
                 const data = await fetch(api);
                 const response: Story[] = await data.json();
-                resolve(response.map(val => val.images[0]));
+                resolve(response.map(val => ({image: val.images[0], id: val.id})));
             } catch (error) {
                 console.log("Failed to fetch data: ", error);
                 reject(error);
@@ -21,13 +34,13 @@ export const getMockStoryThumbnailData = ({ api }: Props): Promise<string[]> => 
         }, 1000)
     })
 }
-export const getMockStoryData = ({ api }: Props): Promise<Story[]> => {
+export const getMockSingleStory = ({ api, id }: SingleStoryProps): Promise<Story> => {
     return new Promise((resolve, reject) => {
         setTimeout(async () => {
             try {
                 const data = await fetch(api);
                 const response: Story[] = await data.json();
-                resolve(response);
+                resolve(response.filter(val => val.id === id)[0]);
             } catch (error) {
                 console.log("Failed to fetch data: ", error);
                 reject(error);
