@@ -1,0 +1,22 @@
+[
+    {
+        "userName": "User Name 1",
+        "image": "/images/postImage.jpeg"
+    },
+    {
+        "userName": "User Name 2",
+        "image": "/images/postImage.jpeg"
+    },
+    {
+        "userName": "User Name 3",
+        "image": "/images/postImage.jpeg"
+    },
+    {
+        "userName": "User Name 4",
+        "image": "/images/postImage.jpeg"
+    },
+    {
+        "userName": "User Name 5",
+        "image": "/images/postImage.jpeg"
+    }
+]
