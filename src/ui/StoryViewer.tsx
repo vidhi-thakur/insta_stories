@@ -1,35 +1,75 @@
-import { LinearProgress } from '@mui/material';
+import { CircularProgress, LinearProgress } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import './StoryViewer.css'
+import { useEffect, useState } from 'react';
 
 interface StoryViewerProps {
-    handleClose: () => void;
+    handleClose: () => void,
+    handleNextStory: (id: number) => void,
+    currentUserStory: {
+        userName: string,
+        images: string[],
+        id: number,
+        hasMore: boolean,
+        hasPrev: boolean,
+    }
+    loading: boolean
 }
 
 export default function StoryViewer({
-    handleClose
+    handleClose,
+    handleNextStory,
+    currentUserStory,
+    loading
 }: StoryViewerProps) {
+    useEffect(() => {
+        setCurrImageIndex(0)
+    }, [currentUserStory.id])
+
+    const [currImageIndex, setCurrImageIndex] = useState(0);
+    useEffect(() => {
+        let id = setInterval(() => {
+            if (currImageIndex < currentUserStory.images.length - 1) {
+                setCurrImageIndex(i => i + 1)
+            } else {
+                if (currentUserStory.hasMore) {
+                    // make API all for next story
+                    handleNextStory(currentUserStory.id)
+                } else {
+                    handleClose()
+                }
+            }
+        }, 5000);
+
+        return () => clearInterval(id)
+
+    }, [currImageIndex])
+
+
+
+    if (loading) {
+        return <div className='loading'>
+            <CircularProgress color="inherit" />
+        </div>
+    }
     return (
         <div className="storyViewer">
             <div>
                 <section className='progressbar_outer'>
-                    <div className='progressbar'>
+                    {currentUserStory.images.map(val => <div key={val} className='progressbar'>
                         <LinearProgress variant="determinate" color="inherit" value={50} />
-                    </div>
-                    <div className='progressbar'>
-                        <LinearProgress variant="determinate" color="inherit" value={0} />
-                    </div>
+                    </div>)}
                 </section>
                 <section className='header'>
                     <div className='userImage'>
-                        <img src='/images/female-avatar.png' alt='user' />
+                        <img src='/images/female-avatar.png' alt='user avatar' />
                     </div>
-                    <p>User Name</p>
+                    <p>{currentUserStory.userName}</p>
                     <CloseRoundedIcon onClick={handleClose} className='closeIcon' />
                 </section>
             </div>
             <section className='content'>
-                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDC7cZgtUfDkIPi3KoZCSbbjd9egp_5Gs8_A&s' alt='post' />
+                <img src={currentUserStory.images[currImageIndex]} alt='single story' />
             </section>
         </div>
     )

@@ -5,7 +5,7 @@ import Post from './ui/Post';
 import { CircularProgress } from '@mui/material';
 import PostLoader from './ui/PostLoader';
 import { getMockPostData } from './api/mockPostAPI';
-import { getMockStoryThumbnailData } from './api/mockStoryAPI';
+import { getMockSingleStory, getMockStoryThumbnailData } from './api/mockStoryAPI';
 import StoryLoader from './ui/StoryLoader';
 
 const StoryViewer = lazy(() => import('./ui/StoryViewer'));
@@ -17,7 +17,15 @@ interface PostProps {
 
 interface StoryProps {
   userName: string,
-  images: string[]
+  images: string[],
+  id: number,
+  hasMore: boolean,
+  hasPrev: boolean,
+}
+
+interface StoryThumbnailProps {
+  image: string,
+  id: number,
 }
 
 function App() {
@@ -33,7 +41,6 @@ function App() {
     (async () => {
       setStoryLoading(true)
       const data = await getMockStoryThumbnailData({ api: '/data/stories.json' })
-      console.log(data);
       setStoryThumbnails(data)
       setStoryLoading(false)
     })();
@@ -46,20 +53,37 @@ function App() {
   // States for story
   const [isStoryOpen, setStoryOpen] = useState(false);
   const [isStoryLoading, setStoryLoading] = useState(false);
-  const [storythumbnails, setStoryThumbnails] = useState<string[] | null>(null);
-  const [currentUserStory, setCurrentUserStory] = useState<null | StoryProps>(null)
+  const [storythumbnails, setStoryThumbnails] = useState<StoryThumbnailProps[] | null>(null);
+  const [currentUserStory, setCurrentUserStory] = useState<null | StoryProps>(null);
+  const [isCurrentStoryLoading, setCurrentStoryLoading] = useState(false);
+
+
+  const handleStoryClick = async (id: number) => {
+    setStoryOpen(true);
+    setCurrentStoryLoading(true);
+    const data = await getMockSingleStory({ api: "/data/stories.json", id });
+    setCurrentUserStory(data);
+    setCurrentStoryLoading(false);
+  }
+
+  const handleNextStory = async (id: number) => {
+    setCurrentStoryLoading(true);
+    const data = await getMockSingleStory({ api: "/data/stories.json", id: id + 1 });
+    setCurrentUserStory(data);
+    setCurrentStoryLoading(false);
+  }
 
   return (
     <div className="App">
       <div className='mobile'>
         {isStoryOpen ? <section className='storyViewer_outer'>
           <Suspense fallback={<CircularProgress sx={{ position: "absolute", top: "40%", left: "50%" }} color="inherit" />}>
-            {currentUserStory ? <StoryViewer currentUserStory={currentUserStory} handleClose={() => setStoryOpen(false)} /> : null}
+            {currentUserStory ? <StoryViewer handleNextStory={handleNextStory} loading={isCurrentStoryLoading} currentUserStory={currentUserStory} handleClose={() => setStoryOpen(false)} /> : null}
           </Suspense>
         </section> : null}
         <section className='stories'>
           <div className='hide-scrollbar'>
-            {!isStoryLoading && storythumbnails ? storythumbnails.map(val => <Story image={val} key={val} handleClick={() => setStoryOpen(true)} />) :
+            {!isStoryLoading && storythumbnails ? storythumbnails.map(val => <Story {...val} key={val.id} handleClick={handleStoryClick} />) :
               <StoryLoader />}
           </div>
         </section>

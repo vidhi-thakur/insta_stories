@@ -1,5 +1,4 @@
 import { Skeleton } from '@mui/material'
-import './StoryLoader.css'
 
 function StoryLoader() {
     return (
