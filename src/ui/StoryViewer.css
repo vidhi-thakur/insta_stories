@@ -11,12 +11,15 @@
     gap: var(--spacing-small);
 }
 
-.storyViewer .progressbar {
+.storyViewer .progressbar_outer {
+    display: flex;
+    gap: var(--spacing-small);
+    width: 100%;
+}
+
+.storyViewer .progressbar_outer .progressbar {
     display: block;
     width: 100%;
-    background-color: brown;
-    height: 3px;
-    border-radius: 15px;
 }
 
 .storyViewer .header {

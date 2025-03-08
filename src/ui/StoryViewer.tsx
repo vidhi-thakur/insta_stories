@@ -1,5 +1,6 @@
-import './StoryViewer.css'
+import { LinearProgress } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import './StoryViewer.css'
 
 interface StoryViewerProps {
     handleClose: () => void;
@@ -11,8 +12,13 @@ export default function StoryViewer({
     return (
         <div className="storyViewer">
             <div>
-                <section className='progressbar'>
-
+                <section className='progressbar_outer'>
+                    <div className='progressbar'>
+                        <LinearProgress variant="determinate" color="inherit" value={50} />
+                    </div>
+                    <div className='progressbar'>
+                        <LinearProgress variant="determinate" color="inherit" value={0} />
+                    </div>
                 </section>
                 <section className='header'>
                     <div className='userImage'>
