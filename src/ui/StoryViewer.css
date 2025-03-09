@@ -1,0 +1,85 @@
+.storyViewer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+.storyViewer .icon {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    color: white;
+    background-color: gray;
+    padding: 4px;
+    border-radius: 50%;
+}
+
+.storyViewer .nextIcon {
+    right: var(--spacing-default);
+}
+
+.storyViewer .prevIcon {
+    left: var(--spacing-default);
+}
+
+.loading {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.storyViewer>div {
+    padding: var(--spacing-small);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+}
+
+.storyViewer .progressbar_outer {
+    display: flex;
+    gap: var(--spacing-small);
+    width: 100%;
+}
+
+.storyViewer .progressbar_outer .progressbar {
+    display: block;
+    width: 100%;
+}
+
+.storyViewer .header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-default);
+    position: relative;
+}
+
+.storyViewer .header .closeIcon {
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+}
+
+.storyViewer .header .userImage {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+}
+
+.storyViewer .header .userImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.storyViewer .content {
+    display: grid;
+    place-items: center;
+    flex: 1;
+}
+
+.storyViewer .content img {
+    height: auto;
+    width: 100%;
+}
