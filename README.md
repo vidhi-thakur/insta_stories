@@ -5,7 +5,8 @@ It is a _simple and sophisticated_ platform created for instagram story viewing 
 ## The technologies used while building this app are as follows
 1. React JS
 2. Typescript
-2. CSS
+3. CSS
+4. Material UI
 
 ## Current features
 1. Posts: We can see the post fetched by a mock API.
@@ -18,6 +19,11 @@ It is a _simple and sophisticated_ platform created for instagram story viewing 
 1. To setup this project, clone the project repository with command _git clone <repository_url>_
 2. Install the dependencies, run command _npm install_
 3. Start the project with command _npm start_
+
+## Points to note
+1. For maintaining consistency in the design, Material UI components and icons are utilized whereever necessary.
+2. For making the sections scalable, the components are made modular and reusable.
+3. To keep the app optmized, code splitting was implemented using dynamic imports and suspense component of React.
 
 #### Live project URL: https://insta-stories-sepia.vercel.app/ 
 
