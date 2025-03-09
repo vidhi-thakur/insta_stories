@@ -67,8 +67,6 @@ export default function StoryViewer({
         }
     }
 
-
-
     if (loading) {
         return <div className='loading'>
             <CircularProgress color="inherit" />
